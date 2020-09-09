@@ -3,7 +3,29 @@ const express = require('express');
 
 const app = express();
 const publicDirectory = path.join(__dirname, '../public/');
+app.set('view engine', 'hbs');
 app.use(express.static(publicDirectory));
+
+app.get('', (req, res) => {
+  res.render('index', {
+    title: 'this is index ',
+    name: 'Tomer Mor',
+  });
+});
+
+app.get('/about', (req, res) => {
+  res.render('about', {
+    title: 'About me',
+    name: 'Tomer Mor',
+  });
+});
+
+app.get('/help', (req, res) => {
+  res.render('help', {
+    title: 'Help ',
+    name: 'Tomer Mor',
+  });
+});
 
 app.get('/weather', (req, res) => {
   res.send({ forecast: "it's snowing", location: 'Israel' });

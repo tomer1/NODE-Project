@@ -40,6 +40,17 @@ app.get('/weather', (req, res) => {
   res.send({ forecast: "it's snowing", location: 'Israel' });
 });
 
+app.get('/help/*', (req, res) => {
+  res.render('404', {
+    errorMsg: 'Help article  not found',
+  });
+});
+app.get('*', (req, res) => {
+  res.render('404', {
+    errorMsg: 'Page not found',
+  });
+});
+
 app.listen(3000, () => {
   console.log('Server is up in port 3000');
 });
